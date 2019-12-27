@@ -29,6 +29,7 @@ body {
   display: flex;
   align-self: flex-end;
   flex-direction: column;
+  text-align: end;
 }
 
 .sliders {
@@ -65,7 +66,7 @@ body {
 .bar {
   height: 300px;
   width: 40px;
-  background: blue;
+  background: #3289fa;
   margin: 2px;
   align-self: flex-end;
 }

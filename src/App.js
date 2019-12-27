@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./App.css";
 
 const TO_AGE = 85;
+const INFLATION = 1.02;
 
 // Add commas: 1300 -> "1,300"
 function format(num) {
@@ -25,13 +26,12 @@ export default function App() {
     const chart = [];
     let current_value = savings;
     let currentRent = rent;
-    const inflationFactor = 1.02;
     const interest_factor = 1 + interest / 100;
 
     for (let age = fromAge; age <= toAge; age++) {
       let currentIncomeYear = incomeYear;
-      currentRent = currentRent * inflationFactor;
-      currentIncomeYear = currentIncomeYear * inflationFactor;
+      currentRent = currentRent * INFLATION;
+      currentIncomeYear = currentIncomeYear * INFLATION;
 
       // After retirement, no income
       if (age >= retireAge) {
@@ -87,9 +87,10 @@ export default function App() {
             step={0.5}
             value={interest}
             setter={setInterest}
+            noFormat
           />
           <Slider
-            name="Net income"
+            name="Net income per year"
             min={20000}
             max={120000}
             value={incomeYear}
@@ -116,7 +117,7 @@ export default function App() {
           <hr />
           <Slider
             name="Mortgage starts at age"
-            min={age}
+            min={25}
             max={90}
             value={mortgageAge}
             setter={setMortgageAge}
@@ -138,7 +139,7 @@ export default function App() {
           />
           <hr />
           <Slider
-            name="Retire age"
+            name="Retirement age"
             min={35}
             max={65}
             value={retireAge}
@@ -148,6 +149,9 @@ export default function App() {
         <div className="summary">
           <div>{`Age: ${TO_AGE}`}</div>
           <div>{`Savings: ${format(lastValue)}`}</div>
+          <div>{`In today's: ${format(
+            lastValue / Math.pow(INFLATION, TO_AGE - age)
+          )}`}</div>
         </div>
       </div>
       <Chart data={chartData} />
@@ -163,7 +167,9 @@ function Slider(props) {
     <div className="sliderBox">
       <div className="sliderLabel">{props.name}</div>
       <input type="range" className="slider" {...props} onChange={onChange} />
-      <div className="sliderValue">{format(props.value)}</div>
+      <div className="sliderValue">
+        {props.noFormat ? props.value : format(props.value)}
+      </div>
     </div>
   );
 }
