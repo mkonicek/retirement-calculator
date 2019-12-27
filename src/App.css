@@ -1,0 +1,71 @@
+html,
+body {
+  height: 100%;
+}
+
+#root {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex: 1;
+  height: 100%;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  padding: 32px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 900px;
+}
+
+.topSection {
+  display: flex;
+  flex-direction: column;
+}
+
+.summary {
+  display: flex;
+  align-self: flex-end;
+  flex-direction: column;
+}
+
+.sliders {
+  display: flex;
+  flex-direction: column;
+  width: 600px;
+}
+
+.sliderBox {
+  display: flex;
+  flex: 1;
+  align-items: stretch;
+  flex-direction: row;
+}
+
+.sliderLabel {
+  width: 200px;
+  align-self: flex-start;
+}
+.slider {
+  flex: 1;
+}
+.sliderValue {
+  align-self: flex-end;
+  text-align: right;
+  width: 60px;
+}
+
+.chart {
+  display: flex;
+  flex-direction: row;
+  margin-top: 16px;
+}
+.bar {
+  height: 300px;
+  width: 40px;
+  background: blue;
+  margin: 2px;
+  align-self: flex-end;
+}
