@@ -17,7 +17,7 @@ export default function App() {
   const [spendMonth, setSpendMonth] = useState(900);
   const [mortgageAge, setMortgageAge] = useState(35);
   const [mortgageYears, setMortgageYears] = useState(25);
-  const [propertyValue, setPropertyValue] = useState(150 * 1000);
+  const [mortgagePerMonth, setMortgagePerMonth] = useState(1500);
   const [savings, setSavings] = useState(5 * 1000);
   const [retireAge, setRetireAge] = useState(65);
   const [incomeYear, setIncomeYear] = useState(30000);
@@ -47,9 +47,8 @@ export default function App() {
 
       // Paying mortgage
       if (age >= mortgageAge && age <= mortgageAge + mortgageYears) {
-        const mortgateMonth = (propertyValue * 1.3) / (mortgageYears * 12);
         const net_income =
-          currentIncomeYear - (mortgateMonth + spendMonth) * 12;
+          currentIncomeYear - (mortgagePerMonth + spendMonth) * 12;
         current_value = current_value + net_income;
         current_value = current_value * interest_factor;
       }
@@ -123,12 +122,12 @@ export default function App() {
             setter={setMortgageAge}
           />
           <Slider
-            name="Property value (my share)"
-            min={100 * 1000}
-            max={900 * 1000}
-            value={propertyValue}
-            setter={setPropertyValue}
-            step={10000}
+            name="Mortgage per month"
+            min={100}
+            max={4000}
+            value={mortgagePerMonth}
+            setter={mortgagePerMonth}
+            step={50}
           />
           <Slider
             name="Mortgage years"
